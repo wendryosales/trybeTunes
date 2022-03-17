@@ -1,0 +1,241 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 20%;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 697px;
+  min-height: 314px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.loading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 50vh;
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 60px;
+  line-height: 65px;
+  letter-spacing: 0.02em;
+  color: #023031;
+}
+
+.header {
+  width: 100vw;
+  height: 96px;
+  background: #023031;
+  box-shadow: 0px 4px 1px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header img {
+ width: 117px;
+}
+
+.userBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 198.7px;
+  height: 41.65px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  padding: 5px 5px;
+  text-align: center;
+}
+
+.userBox h4 {
+  text-align: center;
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  margin: 0 auto;
+  color: #29313D;
+}
+
+.avatar {
+  width: 35px !important;
+  border-radius: 50%;
+}
+
+nav {
+  font-family: Epilogue;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 29px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav a {
+  align-items: center;
+  color: #2FC18C;
+  display: flex;
+  justify-content: center;
+  height: 78px;
+  width: 33vw;
+  text-decoration: none;
+  text-align: center;
+  background-color: #F0F2F5;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+nav a:hover, .active {
+  background: #036B52;
+  color: white;
+}
+
+.form-search {
+  padding: 50px;
+}
+
+.form-search button {
+  margin: 0 20px;
+  width: 135px;
+}
+
+.width-search {
+  width: 520px;
+}
+
+.notfound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 30vh;
+  font-family: Epilogue;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 60px;
+  line-height: 65px;
+  letter-spacing: 0.02em;
+  color: #023031;
+}
+
+.libraries-title {
+  font-family: Epilogue;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 25px;
+  color: #001813;
+}
+
+.libraries {
+  padding: 0 10%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100vw;
+}
+
+a {
+  text-decoration: none;
+}
+
+.libraries a {
+  text-decoration: none;
+}
+
+.card-400x400 {
+  padding-top: 10px;
+  min-width: 325px;
+  min-height: 400px;
+}
+
+.card-400x400 img {
+  min-width: 300px;
+}
+
+.card {
+  width: 200px;
+  height: 290px;
+  display: flex;
+  justify-content: flex-start;
+  margin: 30px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 200px;
+}
+
+.card-title {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 150%;
+  color: #3D495C;
+  padding: 0 15px;
+  margin-top: 15px;
+  width: 90%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.card-text {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 150%;
+  color: #3D495C;
+  padding: 0px 15px;
+  margin-top: 15px;
+  width: 80%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.tracklist {
+  padding-top: 40px;
+}
