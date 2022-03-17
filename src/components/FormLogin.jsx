@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 
 export default class FormLogin extends Component {
+  notify = () => toast.success('Check your email', {
+    position: 'top-right',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+  });
+
   render() {
     const { buttonOffOn, handleChange, handleClick, name } = this.props;
     return (
@@ -54,7 +65,6 @@ export default class FormLogin extends Component {
           type="submit"
           data-testid="login-submit-button"
           disabled={ buttonOffOn }
-          onClick={ handleClick }
           className="btn btn-success bg-gradient float-right mb-2"
         >
           Login
@@ -64,6 +74,7 @@ export default class FormLogin extends Component {
             className="text-secondary"
             data-bs-toggle="modal"
             href="#ok"
+            onClick={ this.notify }
           >
             Forgot password
           </a>

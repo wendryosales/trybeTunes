@@ -1,18 +1,19 @@
+import propTypes from 'prop-types';
 import React, { Component } from 'react';
 
 export default class SignUp extends Component {
   render() {
-    const { buttonOffOn, handleChange, handleClick, name } = this.props;
+    const { buttonOffOn, handleChange, handleClick, name, email } = this.props;
     return (
       <>
         <div className="form-group mb-2">
-          <label className="text-white text-opacity-75" htmlFor="email">
+          <label className="text-white text-opacity-75" htmlFor="name">
             Full Name
             <input
               type="text"
-              name="email"
+              name="name"
               className="text-white form-control bg-secondary bg-opacity-50 border-0"
-              id="email"
+              id="name"
               placeholder="Enter your full name"
               data-testid="login-name-input"
               onChange={ handleChange }
@@ -31,7 +32,7 @@ export default class SignUp extends Component {
               placeholder="Enter your email address"
               data-testid="login-name-input"
               onChange={ handleChange }
-              value={ name }
+              value={ email }
             />
           </label>
         </div>
@@ -72,3 +73,10 @@ export default class SignUp extends Component {
     );
   }
 }
+
+SignUp.propTypes = {
+  buttonOffOn: propTypes.bool.isRequired,
+  handleChange: propTypes.func.isRequired,
+  handleClick: propTypes.func.isRequired,
+  name: propTypes.string.isRequired,
+};
