@@ -70,7 +70,7 @@ class Login extends Component {
         <img className="container-xll" src={ logo } alt="logo" />
         <form
           className="container-xll d-flex flex-column
-          shadow rounded-5  bg-dark bg-gradient p-4"
+          shadow rounded-5  bg-dark bg-gradient p-4 mt-2"
         >
           <div className="container mb-3 nav">
             <button
@@ -99,10 +99,8 @@ class Login extends Component {
             handleClick={ this.handleClick }
             handleChange={ this.handleChange }
           />}
-
         </form>
       </div>
-
     );
   }
 }

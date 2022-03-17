@@ -55,10 +55,19 @@ export default class FormLogin extends Component {
           data-testid="login-submit-button"
           disabled={ buttonOffOn }
           onClick={ handleClick }
-          className="btn btn-success bg-gradient float-right"
+          className="btn btn-success bg-gradient float-right mb-2"
         >
           Login
         </button>
+        <div className="text-center">
+          <a
+            className="text-secondary"
+            data-bs-toggle="modal"
+            href="#ok"
+          >
+            Forgot password
+          </a>
+        </div>
       </>
     );
   }

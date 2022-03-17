@@ -5,49 +5,58 @@ export default class SignUp extends Component {
     const { buttonOffOn, handleChange, handleClick, name } = this.props;
     return (
       <>
-        <div className="form-group">
+        <div className="form-group mb-2">
           <label className="text-white text-opacity-75" htmlFor="email">
-            Email address signup
+            Full Name
             <input
-              type="email"
+              type="text"
               name="email"
-              className="form-control"
+              className="text-white form-control bg-secondary bg-opacity-50 border-0"
               id="email"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
+              placeholder="Enter your full name"
               data-testid="login-name-input"
               onChange={ handleChange }
               value={ name }
             />
-            <small
-              id="emailHelp"
-              className="form-text text-muted"
-            >
-              Email that you have used while registration.
-            </small>
           </label>
         </div>
-        <div className="form-group">
+        <div className="form-group mb-2">
+          <label className="text-white text-opacity-75" htmlFor="email">
+            Email address
+            <input
+              type="email"
+              name="email"
+              className="text-white form-control bg-secondary bg-opacity-50 border-0"
+              id="email"
+              placeholder="Enter your email address"
+              data-testid="login-name-input"
+              onChange={ handleChange }
+              value={ name }
+            />
+          </label>
+        </div>
+        <div className="form-group mb-2">
           <label className="text-white text-opacity-75" htmlFor="password">
             Password
             <input
               type="password"
               name="password"
-              className="form-control"
+              className="text-white form-control bg-secondary bg-opacity-50 border-0"
               id="password"
               placeholder="Password"
             />
           </label>
         </div>
-        <div className="form-check">
-          <label className="form-check-label text-muted" htmlFor="remember">
+        <div className="form-group mb-3">
+          <label className="text-white text-opacity-75" htmlFor="retype-password">
+            Retype Password
             <input
-              type="checkbox"
-              name="checkbox"
-              className="form-check-input"
-              id="remember"
+              type="password"
+              name="password"
+              className="text-white form-control bg-secondary bg-opacity-50 border-0"
+              id="retype-password"
+              placeholder="Retype Password"
             />
-            Remember me
           </label>
         </div>
         <button
@@ -57,7 +66,7 @@ export default class SignUp extends Component {
           onClick={ handleClick }
           className="btn btn-success bg-gradient float-right"
         >
-          Login
+          Submit
         </button>
       </>
     );
