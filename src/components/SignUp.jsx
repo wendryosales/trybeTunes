@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
-export default class FormLogin extends Component {
+export default class SignUp extends Component {
   render() {
     const { buttonOffOn, handleChange, handleClick, name } = this.props;
     return (
       <>
-        <div className="form-group mb-2">
+        <div className="form-group">
           <label className="text-white text-opacity-75" htmlFor="email">
-            Email address
+            Email address signup
             <input
               type="email"
               name="email"
-              className="text-white form-control bg-secondary bg-opacity-50 border-0"
+              className="form-control"
               id="email"
               aria-describedby="emailHelp"
               placeholder="Enter email"
@@ -27,24 +27,24 @@ export default class FormLogin extends Component {
             </small>
           </label>
         </div>
-        <div className="form-group mb-2">
+        <div className="form-group">
           <label className="text-white text-opacity-75" htmlFor="password">
             Password
             <input
               type="password"
               name="password"
-              className="text-white form-control bg-secondary bg-opacity-50 border-0"
+              className="form-control"
               id="password"
               placeholder="Password"
             />
           </label>
         </div>
-        <div className="form-check mb-2">
+        <div className="form-check">
           <label className="form-check-label text-muted" htmlFor="remember">
             <input
               type="checkbox"
               name="checkbox"
-              className="form-check-input bg-secondary bg-opacity-50 border-0"
+              className="form-check-input"
               id="remember"
             />
             Remember me

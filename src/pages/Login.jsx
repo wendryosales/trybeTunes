@@ -4,6 +4,7 @@ import logo from '../logo.svg';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
 import FormLogin from '../components/FormLogin';
+import SignUp from '../components/SignUp';
 
 class Login extends Component {
   constructor() {
@@ -12,6 +13,7 @@ class Login extends Component {
       buttonOffOn: true,
       name: '',
       loading: false,
+      login: true,
     };
   }
 
@@ -41,8 +43,18 @@ class Login extends Component {
     }, time);
   };
 
+  handleClickLogin = () => {
+    this.setState({ login: true });
+  }
+
+  handleClickSignUp = () => {
+    this.setState({ login: false });
+  }
+
   render() {
-    const { name, buttonOffOn, loading } = this.state;
+    const { name, buttonOffOn, loading, login } = this.state;
+    const nav = 'btn w-50 text-white-50';
+    const navActive = 'btn w-50 text-white-50 border-bottom border-3 ';
 
     if (loading) {
       return (
@@ -55,17 +67,39 @@ class Login extends Component {
           align-items-center justify-content-center h-100 bg-success bg-gradient w-100"
         data-testid="page-login"
       >
+        <img className="container-xll" src={ logo } alt="logo" />
         <form
           className="container-xll d-flex flex-column
-          shadow rounded  bg-dark bg-gradient p-4"
+          shadow rounded-5  bg-dark bg-gradient p-4"
         >
-          <img className="container-xll" src={ logo } alt="logo" />
-          <FormLogin
+          <div className="container mb-3 nav">
+            <button
+              type="button"
+              className={ login ? navActive : nav }
+              onClick={ this.handleClickLogin }
+            >
+              Login
+            </button>
+            <button
+              type="button"
+              className={ login ? nav : navActive }
+              onClick={ this.handleClickSignUp }
+            >
+              Sign Up
+            </button>
+          </div>
+          {login ? <FormLogin
             name={ name }
             buttonOffOn={ buttonOffOn }
             handleClick={ this.handleClick }
             handleChange={ this.handleChange }
-          />
+          /> : <SignUp
+            name={ name }
+            buttonOffOn={ buttonOffOn }
+            handleClick={ this.handleClick }
+            handleChange={ this.handleChange }
+          />}
+
         </form>
       </div>
 
