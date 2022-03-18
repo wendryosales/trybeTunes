@@ -1,9 +1,62 @@
 import propTypes from 'prop-types';
 import React, { Component } from 'react';
+import { createUser } from '../services/userAPI';
 
 export default class SignUp extends Component {
+  constructor() {
+    super();
+    this.state = {
+      buttonOffOn: true,
+      name: '',
+      email: '',
+      password: '',
+      retypePassword: '',
+    };
+  }
+
+  handleChange = ({ target }) => {
+    const { email, name } = this.state;
+    const val = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/; // Regex de validação de email
+    const empty = name.length > 1;
+    if (target.name === 'name') {
+      this.setState({
+        name: target.value,
+      });
+    }
+    if (target.name === 'email') {
+      this.setState({
+        email: target.value,
+      });
+    }
+    if (target.name === 'new-password') {
+      this.setState({
+        password: target.value,
+      });
+    }
+    if (target.name === 'retypePassword') {
+      this.setState({
+        retypePassword: target.value,
+      });
+    }
+    if (email.match(val) && empty) {
+      this.setState({
+        buttonOffOn: false,
+      });
+    } else { this.setState({ buttonOffOn: true }); }
+  }
+
+  handleClickSubmit = () => {
+    const { handleClickLogin } = this.props;
+    const { name: username, email: ema, password: pass, retypePassword } = this.state;
+    if (retypePassword !== pass) {
+      console.log('senha diferente');
+    }
+    createUser({ name: username, email: ema, password: pass });
+    handleClickLogin();
+  };
+
   render() {
-    const { buttonOffOn, handleChange, handleClick, name, email } = this.props;
+    const { name, email, buttonOffOn, password, retypePassword } = this.state;
     return (
       <>
         <div className="form-group mb-2">
@@ -16,7 +69,7 @@ export default class SignUp extends Component {
               id="name"
               placeholder="Enter your full name"
               data-testid="login-name-input"
-              onChange={ handleChange }
+              onChange={ this.handleChange }
               value={ name }
             />
           </label>
@@ -31,7 +84,7 @@ export default class SignUp extends Component {
               id="email"
               placeholder="Enter your email address"
               data-testid="login-name-input"
-              onChange={ handleChange }
+              onChange={ this.handleChange }
               value={ email }
             />
           </label>
@@ -41,22 +94,28 @@ export default class SignUp extends Component {
             Password
             <input
               type="password"
-              name="password"
+              name="new-password"
+              autoComplete="on"
               className="text-white form-control bg-secondary bg-opacity-50 border-0"
               id="password"
               placeholder="Password"
+              onChange={ this.handleChange }
+              value={ password }
             />
           </label>
         </div>
         <div className="form-group mb-3">
-          <label className="text-white text-opacity-75" htmlFor="retype-password">
+          <label className="text-white text-opacity-75" htmlFor="retypePassword">
             Retype Password
             <input
               type="password"
-              name="password"
+              name="retypePassword"
+              autoComplete="on"
               className="text-white form-control bg-secondary bg-opacity-50 border-0"
-              id="retype-password"
+              id="retypePassword"
               placeholder="Retype Password"
+              onChange={ this.handleChange }
+              value={ retypePassword }
             />
           </label>
         </div>
@@ -64,7 +123,7 @@ export default class SignUp extends Component {
           type="submit"
           data-testid="login-submit-button"
           disabled={ buttonOffOn }
-          onClick={ handleClick }
+          onClick={ this.handleClickSubmit }
           className="btn btn-success bg-gradient float-right"
         >
           Submit
@@ -75,8 +134,4 @@ export default class SignUp extends Component {
 }
 
 SignUp.propTypes = {
-  buttonOffOn: propTypes.bool.isRequired,
-  handleChange: propTypes.func.isRequired,
-  handleClick: propTypes.func.isRequired,
-  name: propTypes.string.isRequired,
 };

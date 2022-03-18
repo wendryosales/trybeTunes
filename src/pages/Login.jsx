@@ -12,10 +12,6 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      buttonOffOn: true,
-      name: '',
-      email: '',
-      passsword: '',
       loading: false,
       login: true,
     };
@@ -24,16 +20,19 @@ class Login extends Component {
   handleChange = ({ target }) => {
     const min = 3;
     const enableButton = target.value.length >= min;
-    const val = /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/;
+    const val = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/; // Regex de validação
     if (target.name === 'name') {
       this.setState({
         name: target.value,
       });
     }
 
-    if (target.value === val) {
-      console.log('deu certo');
-    }
+    if (target.value.match(val)) {
+      this.setState({
+        buttonOffOn: false,
+      });
+    } else { this.setState({ buttonOffOn: true }); }
+
     if (target.name === 'email') {
       this.setState({
         email: target.value,
@@ -108,11 +107,7 @@ class Login extends Component {
             handleClick={ this.handleClick }
             handleChange={ this.handleChange }
           /> : <SignUp
-            name={ name }
-            email={ email }
-            buttonOffOn={ buttonOffOn }
-            handleClick={ this.handleClickSubmit }
-            handleChange={ this.handleChange }
+            handleClickLogin={ this.handleClickLogin }
           />}
         </form>
         <ToastContainer

@@ -43,7 +43,8 @@ export default class FormLogin extends Component {
             Password
             <input
               type="password"
-              name="password"
+              autoComplete="on"
+              name="current-password"
               className="text-white form-control bg-secondary bg-opacity-50 border-0"
               id="password"
               placeholder="Password"
