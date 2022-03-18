@@ -62,6 +62,7 @@ class Login extends Component {
         <form
           className="container-xll d-flex flex-column
           shadow rounded-5  bg-dark bg-gradient p-4 mt-2"
+          method="post"
         >
           <div className="container mb-3 nav">
             <button

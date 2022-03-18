@@ -13,15 +13,30 @@ export default class FormLogin extends Component {
     };
   }
 
-  notify = () => toast.success('Check your email', {
-    position: 'top-right',
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-  });
+  notify = () => {
+    const { email } = this.state;
+    if (email.length > 1) {
+      toast.success('Check your email', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error('Please enter a valid email address', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
 
   handleChange = ({ target }) => {
     const { email } = this.state;
@@ -49,24 +64,15 @@ export default class FormLogin extends Component {
     event.preventDefault();
     const { initialSession } = this.props;
     const { email, password } = this.state;
-    toast.success('Sucessfull login', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
     const response = await getUser();
     const autentication = response.dataUsers
       .some((el) => el.email === email && el.password === password);
 
     if (autentication) {
       initialSession(true);
-      toast.success('Sucessfull login', {
+      toast.success('Successful login', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
@@ -76,7 +82,7 @@ export default class FormLogin extends Component {
     } else {
       toast.error('User not found', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
@@ -151,7 +157,7 @@ export default class FormLogin extends Component {
           <a
             className="text-secondary"
             data-bs-toggle="modal"
-            href="#ok"
+            href="#forgot_password"
             onClick={ this.notify }
           >
             Forgot password
