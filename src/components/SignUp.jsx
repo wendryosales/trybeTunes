@@ -1,5 +1,6 @@
 import propTypes from 'prop-types';
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 import { createUser } from '../services/userAPI';
 
 export default class SignUp extends Component {
@@ -45,14 +46,33 @@ export default class SignUp extends Component {
     } else { this.setState({ buttonOffOn: true }); }
   }
 
-  handleClickSubmit = () => {
+  handleClickSubmit = (event) => {
+    event.preventDefault();
     const { handleClickLogin } = this.props;
     const { name: username, email: ema, password: pass, retypePassword } = this.state;
-    if (retypePassword !== pass) {
-      console.log('senha diferente');
+    if (retypePassword === pass) {
+      createUser({ name: username, email: ema, password: pass });
+      handleClickLogin();
+      toast.success('Successful registration', {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.warn('Complete all the fields correctly', {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
     }
-    createUser({ name: username, email: ema, password: pass });
-    handleClickLogin();
   };
 
   render() {
@@ -71,6 +91,7 @@ export default class SignUp extends Component {
               data-testid="login-name-input"
               onChange={ this.handleChange }
               value={ name }
+              required="required"
             />
           </label>
         </div>
@@ -86,6 +107,7 @@ export default class SignUp extends Component {
               data-testid="login-name-input"
               onChange={ this.handleChange }
               value={ email }
+              required="required"
             />
           </label>
         </div>
@@ -101,6 +123,7 @@ export default class SignUp extends Component {
               placeholder="Password"
               onChange={ this.handleChange }
               value={ password }
+              required="required"
             />
           </label>
         </div>
@@ -116,6 +139,7 @@ export default class SignUp extends Component {
               placeholder="Retype Password"
               onChange={ this.handleChange }
               value={ retypePassword }
+              required="required"
             />
           </label>
         </div>
@@ -134,4 +158,5 @@ export default class SignUp extends Component {
 }
 
 SignUp.propTypes = {
+  handleClickLogin: propTypes.func.isRequired,
 };

@@ -27,13 +27,11 @@ export const getUser = () => new Promise((resolve) => {
 });
 
 export const createUser = (user) => new Promise((resolve) => {
-  const emptyUser = {
-    name: '',
-    email: '',
-    image: '',
-    description: '',
-  };
-  saveUser({ ...emptyUser, ...user });
+  let previous = readUser();
+  if (previous === null) previous = { dataUsers: [] };
+  console.log(previous);
+  previous.dataUsers.push(user);
+  saveUser(previous);
   simulateRequest(SUCCESS_STATUS)(resolve);
 });
 
