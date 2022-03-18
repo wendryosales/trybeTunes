@@ -17,29 +17,6 @@ class Login extends Component {
     };
   }
 
-  handleChange = ({ target }) => {
-    const min = 3;
-    const enableButton = target.value.length >= min;
-    const val = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/; // Regex de validação
-    if (target.name === 'name') {
-      this.setState({
-        name: target.value,
-      });
-    }
-
-    if (target.value.match(val)) {
-      this.setState({
-        buttonOffOn: false,
-      });
-    } else { this.setState({ buttonOffOn: true }); }
-
-    if (target.name === 'email') {
-      this.setState({
-        email: target.value,
-      });
-    }
-  }
-
   handleClickSubmit = () => {
     const { toggleLogin } = this.props;
     const { name: username } = this.state;
@@ -65,7 +42,8 @@ class Login extends Component {
   }
 
   render() {
-    const { name, buttonOffOn, loading, login, email } = this.state;
+    const { initialSession } = this.props;
+    const { loading, login } = this.state;
     const nav = 'btn w-50 text-white-50';
     const navActive = 'btn w-50 text-white-50 border-bottom border-3 ';
 
@@ -101,12 +79,7 @@ class Login extends Component {
               Sign Up
             </button>
           </div>
-          {login ? <FormLogin
-            name={ name }
-            buttonOffOn={ buttonOffOn }
-            handleClick={ this.handleClick }
-            handleChange={ this.handleChange }
-          /> : <SignUp
+          {login ? <FormLogin initialSession={ initialSession } /> : <SignUp
             handleClickLogin={ this.handleClickLogin }
           />}
         </form>
@@ -128,7 +101,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  toggleLogin: propTypes.func.isRequired,
+  initialSession: propTypes.func.isRequired,
 };
 
 export default Login;

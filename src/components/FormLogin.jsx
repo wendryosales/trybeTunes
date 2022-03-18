@@ -1,7 +1,18 @@
+import propTypes from 'prop-types';
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import { getUser } from '../services/userAPI';
 
 export default class FormLogin extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      password: '',
+      buttonOffOn: true,
+    };
+  }
+
   notify = () => toast.success('Check your email', {
     position: 'top-right',
     autoClose: 5000,
@@ -12,8 +23,71 @@ export default class FormLogin extends Component {
     progress: undefined,
   });
 
+  handleChange = ({ target }) => {
+    const { email } = this.state;
+    const val = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/; // Regex de validação
+    if (target.name === 'email') {
+      this.setState({
+        email: target.value,
+      });
+    }
+
+    if (target.name === 'password') {
+      this.setState({
+        password: target.value,
+      });
+    }
+
+    if (email.match(val)) {
+      this.setState({
+        buttonOffOn: false,
+      });
+    } else { this.setState({ buttonOffOn: true }); }
+  }
+
+  handleClick = async (event) => {
+    event.preventDefault();
+    const { initialSession } = this.props;
+    const { email, password } = this.state;
+    toast.success('Sucessfull login', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
+    const response = await getUser();
+    const autentication = response.dataUsers
+      .some((el) => el.email === email && el.password === password);
+
+    if (autentication) {
+      initialSession(true);
+      toast.success('Sucessfull login', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error('User not found', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }
+
   render() {
-    const { buttonOffOn, handleChange, handleClick, name } = this.props;
+    const { buttonOffOn, email, password } = this.state;
     return (
       <>
         <div className="form-group mb-2">
@@ -27,8 +101,8 @@ export default class FormLogin extends Component {
               aria-describedby="emailHelp"
               placeholder="Enter email"
               data-testid="login-name-input"
-              onChange={ handleChange }
-              value={ name }
+              onChange={ this.handleChange }
+              value={ email }
             />
             <small
               id="emailHelp"
@@ -44,10 +118,12 @@ export default class FormLogin extends Component {
             <input
               type="password"
               autoComplete="on"
-              name="current-password"
+              name="password"
               className="text-white form-control bg-secondary bg-opacity-50 border-0"
               id="password"
               placeholder="Password"
+              onChange={ this.handleChange }
+              value={ password }
             />
           </label>
         </div>
@@ -67,6 +143,7 @@ export default class FormLogin extends Component {
           data-testid="login-submit-button"
           disabled={ buttonOffOn }
           className="btn btn-success bg-gradient float-right mb-2"
+          onClick={ this.handleClick }
         >
           Login
         </button>
@@ -84,3 +161,7 @@ export default class FormLogin extends Component {
     );
   }
 }
+
+FormLogin.propTypes = {
+  initialSession: propTypes.func.isRequired,
+};

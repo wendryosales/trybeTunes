@@ -16,7 +16,7 @@ class App extends React.Component {
     };
   }
 
-  toggleLogin = (yesOrNo) => {
+  initialSession = (yesOrNo) => {
     this.setState({
       login: yesOrNo,
     });
@@ -29,7 +29,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/">
             { login ? <Redirect to="/search" /> : <Login
-              toggleLogin={ this.toggleLogin }
+              initialSession={ this.initialSession }
             /> }
           </Route>
           <Route path="/search" component={ Search } />
