@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Card from '../components/Card';
+import NavBar from '../components/NavBar';
 
 class Search extends Component {
   constructor() {
@@ -67,34 +68,41 @@ class Search extends Component {
     );
 
     return (
-      <div data-testid="page-search">
-        <Header />
-        <form className="form-search d-flex justify-content-center">
-          <div className="col-auto">
-            <input
-              data-testid="search-artist-input"
-              className="form-control width-search"
-              type="text"
-              placeholder="Nome do Artista"
-              value={ search }
-              onChange={ this.handleChange }
-            />
-          </div>
-          <div className="col-auto">
-            <button
-              data-testid="search-artist-button"
-              type="button"
-              className="btn btn-primary"
-              disabled={ buttonOffOn }
-              onClick={ this.handleClick }
-            >
-              Procurar
-            </button>
-          </div>
-        </form>
-        { loading && <Loading /> }
-        { clickButton && libraries }
-      </div>);
+      <div
+        data-testid="page-search"
+        className="d-flex justify-content-between"
+      >
+        <NavBar />
+        <div className="container-fluid d-flex flex-column bg-dark bg-gradient">
+          <Header />
+          <form className="form-search d-flex justify-content-center">
+            <div className="col-auto">
+              <input
+                data-testid="search-artist-input"
+                className="form-control width-search"
+                type="text"
+                placeholder="Nome do Artista"
+                value={ search }
+                onChange={ this.handleChange }
+              />
+            </div>
+            <div className="col-auto">
+              <button
+                data-testid="search-artist-button"
+                type="button"
+                className="btn btn-primary"
+                disabled={ buttonOffOn }
+                onClick={ this.handleClick }
+              >
+                Procurar
+              </button>
+            </div>
+          </form>
+          { loading && <Loading /> }
+          { clickButton && libraries }
+        </div>
+      </div>
+    );
   }
 }
 

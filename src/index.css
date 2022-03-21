@@ -29,3 +29,25 @@ code {
   outline: 0;
   box-shadow: 0 0 0 0.25rem transparent;
 }
+
+.navbar {
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+.link-secondary:focus, .link-secondary:hover, .active {
+  color: white;
+}
+
+.avatar {
+  width: 35px !important;
+  border-radius: 50%;
+}
+
+.svg-icon-user {
+  width: 1.5em;
+  height: 1.5em;
+}

@@ -67,7 +67,7 @@ export default class FormLogin extends Component {
     const response = await getUser();
     const autentication = response.dataUsers
       .some((el) => el.email === email && el.password === password);
-
+    localStorage.setItem('sessionActual', email);
     if (autentication) {
       initialSession(true);
       toast.success('Successful login', {
