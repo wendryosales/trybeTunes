@@ -6,8 +6,16 @@ Application for searching songs and albums using the iTunes api
 
 ## Stacks
 
-**Front-end:** React, Bootstrap5, JSES6.
+**Front-end:** React JS, Bootstrap V5, JS ES6, HTML, CSS.
 
+**Libraries** React-Toastify, react-icons , react-player, react-router-dom.
+
+## Login
+
+**Email:** mail@mail.com
+**Password:** 011235813
+
+***Welcome Dr. Sheldon Lee Cooper***
 ## Author
 
 - [@wendryosales](https://github.com/wendryosales)
