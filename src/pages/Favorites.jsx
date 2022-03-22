@@ -26,11 +26,11 @@ class Favorites extends Component {
   render() {
     const { loading, favoritesSongs } = this.state;
     return (
-      <div className="d-flex justify-content-between">
+      <div className="page-responsiv d-flex justify-content-between">
 
         <NavBar />
         <div
-          className="container-fluid d-flex
+          className="minH-responsiv container-fluid d-flex
           flex-column bg-dark bg-gradient"
           data-testid="page-favorites"
         >

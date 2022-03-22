@@ -24,7 +24,6 @@ class MusicCard extends Component {
 
   handleChange = async ({ target }) => {
     const { data, forceRender } = this.props;
-    console.log(target);
     const value = target.checked;
     this.setState({
       loading: true,
@@ -36,7 +35,7 @@ class MusicCard extends Component {
       await removeSong(data);
     }
     this.setState({ loading: false });
-    if (forceRender !== undefined) {
+    if (forceRender === 'FavoritePage') {
       this.setState({ removeFavorite: true });
     }
   }
@@ -95,7 +94,7 @@ MusicCard.propTypes = {
   }).isRequired,
   favoriteSongs: propTypes.arrayOf(propTypes.object).isRequired,
   forceRender: propTypes.func,
-  id: propTypes.string.isRequired,
+  id: propTypes.number.isRequired,
 };
 
 MusicCard.defaultProps = {

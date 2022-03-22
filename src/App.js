@@ -33,7 +33,9 @@ class App extends React.Component {
             /> }
           </Route>
           <Route path="/login">
-            <Login initialSession={ this.initialSession } />
+            { login ? <Redirect to="/search" /> : <Login
+              initialSession={ this.initialSession }
+            /> }
           </Route>
           <Route path="/search" component={ Search } />
           <Route path="/album/:id" component={ Album } />

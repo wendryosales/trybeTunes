@@ -4,6 +4,7 @@ import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Card from '../components/Card';
 import NavBar from '../components/NavBar';
+import GendersSearch from '../components/GendersSearch';
 
 class Search extends Component {
   constructor() {
@@ -79,10 +80,13 @@ class Search extends Component {
     return (
       <div
         data-testid="page-search"
-        className="d-flex justify-content-between"
+        className="d-flex justify-content-between page-responsiv"
       >
         <NavBar />
-        <div className="container-fluid d-flex flex-column bg-dark bg-gradient">
+        <div
+          className="minH-responsiv container-fluid
+          d-flex flex-column bg-dark bg-gradient"
+        >
           <Header />
           <form className="container-md form-search d-flex justify-content-center">
             <div
@@ -111,6 +115,7 @@ class Search extends Component {
           </form>
           { loading && <Loading /> }
           { clickButton && libraries }
+          {itemSearch === undefined && <GendersSearch />}
         </div>
       </div>
     );

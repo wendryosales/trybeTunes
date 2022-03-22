@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BiUserCircle } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
@@ -9,72 +10,104 @@ class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      user: { name: 'usuario',
-        email: 'usuario@usuario.com',
-        image: 'https://cdn-icons-png.flaticon.com/512/1177/1177568.png',
-        description: 'vazio' },
+      user: { },
       loading: true,
+      sessionActual: {},
     };
   }
 
   async componentDidMount() {
-    const user = await getUser();
-    this.setState({ user, loading: false });
-    console.log(user);
+    const data = await getUser();
+    const session = JSON.parse(localStorage.getItem('sessionActual'));
+    const userActual = data.dataUsers.find((el) => el.email === session.email);
+    this.setState({
+      user: userActual,
+      url: session.image === undefined ? 'undefined' : session.image,
+      loading: false,
+      sessionActual: session,
+    });
   }
 
   render() {
-    const { loading, user } = this.state;
-    let userDefault = user;
-    if (user.image === '') {
-      userDefault = { name: user.name,
-        email: `${user.name}@mail.com`,
-        image: 'https://cdn-icons-png.flaticon.com/512/1177/1177568.png',
-        description: 'vazio',
-      };
-    }
+    const { loading, user, url, sessionActual } = this.state;
+    const urlImg = url === 'undefined';
     const card = (
-      <div>
-        <div>
-          <img
-            data-testid="profile-image"
-            src={ userDefault.image }
-            alt="Foto de Perfil"
-          />
-          <Link to="/profile/edit">
-            <button type="button">Editar perfil</button>
-          </Link>
+      <div
+        className="container-xll d-flex flex-column
+        shadow rounded-5 form-profile bg-dark bg-gradient p-4 mt-2"
+      >
+        <div className="container d-flex justify-content-center align-items-center mb-3">
+          <div>
+            {urlImg ? <BiUserCircle className="svg-perfil text-light" /> : <img
+              data-testid="profile-image"
+              className="image-perfil shadow rounded-circle"
+              src={ sessionActual.image }
+              alt="Foto de Perfil"
+            /> }
+          </div>
         </div>
-        <div>
-          <label htmlFor="inputName">
+        <div className="form-group mb-2">
+          <label className="text-white text-opacity-75 w-100" htmlFor="inputName">
             <h3>Nome</h3>
-            <p>{userDefault.name}</p>
+            <p
+              className="text-white form-control
+             bg-secondary bg-opacity-50 border-0 mb-3"
+            >
+              {sessionActual.name !== undefined ? sessionActual.name
+                : user.name}
+            </p>
           </label>
         </div>
-        <div>
-          <label htmlFor="inputEmail">
+        <div className="form-group mb-2">
+          <label className="text-white text-opacity-75 w-100" htmlFor="inputEmail">
             <h3>Email</h3>
-            <p>{userDefault.email}</p>
+            <p
+              className="text-white form-control
+              bg-secondary bg-opacity-50 border-0 mb-3"
+            >
+              {sessionActual.email !== undefined ? sessionActual.email
+                : user.email}
+            </p>
           </label>
         </div>
-        <div>
-          <label htmlFor="inputDescrição">
+        <div className="form-group mb-2">
+          <label className="text-white text-opacity-75 w-100" htmlFor="inputDescrição">
             <h3>Descrição</h3>
-            <p>{userDefault.description}</p>
+            <div
+              className="text-white form-control
+              bg-secondary bg-opacity-50 border-0 mb-3"
+            >
+              {sessionActual.description !== undefined ? sessionActual.description
+                : 'vazio'}
+            </div>
           </label>
         </div>
+        <Link className="d-flex justify-content-center" to="/profile/edit">
+          <button
+            className="btn btn-success bg-gradient ms-2"
+            type="button"
+          >
+            Editar perfil
+          </button>
+        </Link>
       </div>
     );
     return (
-      <div className="d-flex justify-content-between" data-testid="page-profile">
+      <div
+        className="page-responsiv d-flex
+        justify-content-between"
+        data-testid="page-profile"
+      >
         <NavBar />
         <div
-          className="container-fluid d-flex
+          className="minH-responsiv container-fluid d-flex
           flex-column bg-dark bg-gradient"
         >
           <Header />
-          { loading && <Loading /> }
-          { !loading && card }
+          <div className="d-flex justify-content-center">
+            { loading && <Loading /> }
+            { !loading && card }
+          </div>
         </div>
       </div>);
   }

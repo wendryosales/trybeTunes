@@ -66,7 +66,6 @@ class Album extends Component {
               id={ el.trackId }
               data={ el }
               favoriteValue={ favoriteValue }
-              forceRender={ this.forceRender }
             />))}
           </div>
           <div />
