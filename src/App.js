@@ -25,12 +25,15 @@ class App extends React.Component {
   render() {
     const { login } = this.state;
     return (
-      <div className="app">
+      <div className="app bg-black bg-gradient">
         <Switch>
           <Route exact path="/">
             { login ? <Redirect to="/search" /> : <Login
               initialSession={ this.initialSession }
             /> }
+          </Route>
+          <Route path="/login">
+            <Login initialSession={ this.initialSession } />
           </Route>
           <Route path="/search" component={ Search } />
           <Route path="/album/:id" component={ Album } />

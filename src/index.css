@@ -11,8 +11,11 @@ body {
   overflow-x: hidden;
 }
 
+.page-login{
+  min-height: 100vh;
+}
+
 .app {
-  height: 100vh;
   width: 100vw;
 }
 
@@ -31,7 +34,8 @@ code {
 }
 
 .navbar {
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
 }
 
 a {
@@ -51,3 +55,114 @@ a {
   width: 1.5em;
   height: 1.5em;
 }
+
+.userBox {
+  width: 10em;
+  height: 3em;
+}
+
+.card {
+  width: 200px;
+  height: 290px;
+  border-radius: 7px;
+  background: linear-gradient(180deg, rgba(243, 243, 243, 0.15), rgba(255, 255, 255, 0)) !important;
+}
+
+.card:hover {
+  background: linear-gradient(180deg, rgba(245, 225, 225, 0.15), rgba(228, 220, 220, 0.459)) !important
+}
+
+.card img {
+  width: 180px;
+  border-radius: 7px;
+}
+
+.card-title {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 150%;
+  color: whitesmoke;
+  padding: 0 15px;
+  margin-top: 15px;
+  width: 90%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.card-text {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 150%;
+  color: whitesmoke;
+  padding: 0px 15px;
+  margin-top: 15px;
+  width: 80%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.form-search {
+  max-width: 500px;
+}
+
+.music-item {
+  border-radius: 7px;
+  background: linear-gradient(90deg, rgba(243, 243, 243, 0.15), rgba(255, 255, 255, 0)) !important;
+}
+
+
+  .card-400x400 {
+    padding-top: 10px !important;
+    min-width: 325px !important;
+    max-width: 40vw;
+  }
+  
+  .card-400x400 img {
+    max-width: 250px !important;
+  }
+
+  audio {
+  width: 600px;
+  -webkit-transition:all 0.5s linear;
+  -moz-transition:all 0.5s linear;
+  -o-transition:all 0.5s linear;
+  transition:all 0.5s linear;
+  -moz-border-radius:7px 7px 7px 7px ;
+  -webkit-border-radius:7px 7px 7px 7px ;
+  border-radius:7px 7px 7px 7px ;
+  }
+
+  audio:hover, audio:focus, audio:active {
+  -webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  -moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  transform: scale(1.05);
+  }
+
+  .check-fav {
+    width: 0px;
+    height: 0px;
+  }
+
+  .label-check {
+    cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    .card-400x400  {
+      display: flex;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+    }
+  }

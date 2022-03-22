@@ -182,13 +182,13 @@ a {
 }
 
 .card-400x400 {
-  padding-top: 10px;
-  min-width: 325px;
-  min-height: 400px;
+  padding-top: 10px !important;
+  min-width: 325px !important;
+  min-height: 400px !important;
 }
 
 .card-400x400 img {
-  min-width: 300px;
+  min-width: 300px !important;
 }
 
 .card {

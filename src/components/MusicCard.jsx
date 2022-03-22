@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import ReactPlayer from 'react-player';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
@@ -22,6 +24,7 @@ class MusicCard extends Component {
 
   handleChange = async ({ target }) => {
     const { data, forceRender } = this.props;
+    console.log(target);
     const value = target.checked;
     this.setState({
       loading: true,
@@ -39,7 +42,7 @@ class MusicCard extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, id } = this.props;
     const { trackName, previewUrl, trackId } = data;
     const { loading, favoriteValue, removeFavorite } = this.state;
     if (removeFavorite) {
@@ -49,23 +52,30 @@ class MusicCard extends Component {
       return (<Loading />);
     }
     return (
-      <div className="container d-flex mb-1">
-        <div className="container d-flex align-items-center">
+      <div className="container d-flex mb-2 music-item">
+        <div className="container text-light d-flex align-items-center">
           {' '}
           { trackName}
           {' '}
         </div>
-        <audio data-testid="audio-component" src={ previewUrl } controls>
-          <track kind="captions" />
-          O seu navegador não suporta o elemento
-          {' '}
-          <code>audio</code>
-          .
-        </audio>
-        <label htmlFor="input-favorite">
-          Favorita
+        <ReactPlayer
+          url={ previewUrl }
+          controls
+          height="50px"
+          playing
+          light
+          pip
+          stopOnUnmount={ false }
+        />
+        <label
+          className="label-check d-flex
+        align-items-center text-light"
+          htmlFor={ id }
+        >
+          {favoriteValue ? <BsHeartFill /> : <BsHeart />}
           <input
-            id="input-favorite"
+            id={ id }
+            className="bg-transparent check-fav"
             type="checkbox"
             data-testid={ `checkbox-music-${trackId}` }
             checked={ favoriteValue }
@@ -84,6 +94,12 @@ MusicCard.propTypes = {
     trackId: propTypes.number,
   }).isRequired,
   favoriteSongs: propTypes.arrayOf(propTypes.object).isRequired,
-  forceRender: propTypes.string.isRequired,
+  forceRender: propTypes.func,
+  id: propTypes.string.isRequired,
 };
+
+MusicCard.defaultProps = {
+  forceRender: '',
+};
+
 export default MusicCard;

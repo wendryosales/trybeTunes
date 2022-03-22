@@ -55,7 +55,8 @@ class Login extends Component {
     return (
       <div
         className="d-flex flex-column
-          align-items-center justify-content-center h-100 bg-success bg-gradient w-100"
+          align-items-center justify-content-center h-100
+          bg-success bg-gradient w-100 page-login"
         data-testid="page-login"
       >
         <img className="container-xll" src={ logo } alt="logo" />

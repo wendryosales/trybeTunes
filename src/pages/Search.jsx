@@ -17,10 +17,19 @@ class Search extends Component {
     };
   }
 
-  handleChange = ({ target }) => {
+  handleEnter = (event) => {
+    const enter = 13;
+    if (event.keyCode === enter) {
+      event.preventDefault();
+      this.handleClick();
+    }
+  }
+
+  handleChange = (event) => {
+    event.preventDefault();
+    const { target } = event;
     const min = 2;
     const enableButton = target.value.length >= min;
-
     this.setState({
       buttonOffOn: !enableButton,
       search: target.value,
@@ -51,17 +60,17 @@ class Search extends Component {
 
     const libraries = (
       <>
-        <p className="libraries libraries-title">
+        <p className="p-4 text-light">
           Resultado de álbuns de:
           {' '}
           { itemSearch }
         </p>
 
-        <div className="libraries">
+        <div className="d-flex flex-row flex-wrap p-2">
           {
             (albums.length > 1)
               ? albums.map((ele) => <Card dataAlbum={ ele } key={ ele.collectionId } />)
-              : <div className="notfound">Nenhum álbum foi encontrado</div>
+              : <div className="p-4 text-light">Nenhum álbum foi encontrado</div>
           }
         </div>
       </>
@@ -75,28 +84,30 @@ class Search extends Component {
         <NavBar />
         <div className="container-fluid d-flex flex-column bg-dark bg-gradient">
           <Header />
-          <form className="form-search d-flex justify-content-center">
-            <div className="col-auto">
+          <form className="container-md form-search d-flex justify-content-center">
+            <div
+              className="form-search container-sm me-3"
+            >
               <input
                 data-testid="search-artist-input"
-                className="form-control width-search"
+                className="text-white form-control
+                bg-secondary bg-opacity-50 border-0 me-3"
                 type="text"
                 placeholder="Nome do Artista"
                 value={ search }
                 onChange={ this.handleChange }
+                onKeyDown={ this.handleEnter }
               />
             </div>
-            <div className="col-auto">
-              <button
-                data-testid="search-artist-button"
-                type="button"
-                className="btn btn-primary"
-                disabled={ buttonOffOn }
-                onClick={ this.handleClick }
-              >
-                Procurar
-              </button>
-            </div>
+            <button
+              data-testid="search-artist-button"
+              type="button"
+              className="btn btn-success"
+              disabled={ buttonOffOn }
+              onClick={ this.handleClick }
+            >
+              Procurar
+            </button>
           </form>
           { loading && <Loading /> }
           { clickButton && libraries }

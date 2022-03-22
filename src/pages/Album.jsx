@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import NavBar from '../components/NavBar';
 
 class Album extends Component {
   constructor() {
@@ -32,22 +33,37 @@ class Album extends Component {
       url = artworkUrl100.replace('100x100', '400x400');
     }
     return (
-      <div data-testid="page-album">
-        <Header />
-        <div className="xll-container d-flex justify-content-center">
-          <div className="card card-400x400 container ">
+      <div className="d-flex justify-content-between" data-testid="page-album">
+        <NavBar />
+        <div
+          className="container-fluid d-flex
+          flex-column bg-dark bg-gradient"
+        >
+          <Header />
+          <div
+            className="container card-400x400 d-flex
+              justify-content-start m-2 p-5 text-black align-items-end"
+          >
             <img
               src={ url }
               alt={ collectionName }
               className="card-img-top"
             />
-            <h6 data-testid="album-name" className="card-title">{collectionName}</h6>
-            <p data-testid="artist-name" className="card-text">{artistName}</p>
+            <div className="d-flex flex-column container">
+              <h1
+                data-testid="album-name"
+                className="card-title fs-1"
+              >
+                {collectionName}
+              </h1>
+              <h3 data-testid="artist-name" className="card-text fs-6">{artistName}</h3>
+            </div>
           </div>
-          <div className="sm-container tracklist">
+          <div className="container tracklist">
             { tracks.map((el) => (<MusicCard
               favoriteSongs={ favoriteSongs }
               key={ el.trackId }
+              id={ el.trackId }
               data={ el }
               favoriteValue={ favoriteValue }
               forceRender={ this.forceRender }

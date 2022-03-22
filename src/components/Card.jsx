@@ -9,10 +9,14 @@ class Card extends Component {
     const url200x200 = artworkUrl100.replace('100x100', '200x200');
     return (
       <Link
+        className="link-card"
         to={ `/album/${collectionId}` }
         data-testid={ `link-to-album-${collectionId}` }
       >
-        <div className="card">
+        <div
+          className="card d-flex justify-content-start m-3 p-2
+          shadow text-black"
+        >
           <img
             src={ url200x200 }
             alt={ collectionName }

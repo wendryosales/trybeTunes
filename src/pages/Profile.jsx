@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
+import NavBar from '../components/NavBar';
 import { getUser } from '../services/userAPI';
 
 class Profile extends Component {
@@ -65,10 +66,16 @@ class Profile extends Component {
       </div>
     );
     return (
-      <div data-testid="page-profile">
-        <Header />
-        { loading && <Loading /> }
-        { !loading && card }
+      <div className="d-flex justify-content-between" data-testid="page-profile">
+        <NavBar />
+        <div
+          className="container-fluid d-flex
+          flex-column bg-dark bg-gradient"
+        >
+          <Header />
+          { loading && <Loading /> }
+          { !loading && card }
+        </div>
       </div>);
   }
 }

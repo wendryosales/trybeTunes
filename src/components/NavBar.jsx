@@ -6,7 +6,7 @@ export default class NavBar extends Component {
   render() {
     return (
       <div
-        className="navbar bg-black bg-gradient nav
+        className="navbar bg-transparent nav
         d-flex align-items-start justify-content-center text-secondary p-3"
       >
         <nav
