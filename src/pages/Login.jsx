@@ -17,22 +17,6 @@ class Login extends Component {
     };
   }
 
-  handleClickSubmit = () => {
-    const { toggleLogin } = this.props;
-    const { name: username } = this.state;
-    createUser({ name: username });
-    this.setState({
-      loading: true,
-    });
-
-    const time = 500;
-    setTimeout(() => {
-      this.setState({
-        loading: false,
-      }, toggleLogin(true));
-    }, time);
-  };
-
   handleClickLogin = () => {
     this.setState({ login: true });
   }
