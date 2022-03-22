@@ -90,6 +90,9 @@ class Login extends Component {
           pauseOnHover
           theme="dark"
         />
+        © 2021 Alguns direitos reservados
+        {' '}
+        <a className="text-dark" href="https://www.linkedin.com/in/wendryosales/">Wendryo Sales</a>
       </div>
     );
   }
