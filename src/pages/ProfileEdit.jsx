@@ -55,8 +55,7 @@ class ProfileEdit extends Component {
     }
   }
 
-  handleClick = (event) => {
-    event.preventDefault();
+  handleClick = () => {
     const { user, name, email, image, description } = this.state;
     localStorage.setItem('sessionActual', JSON.stringify({
       user, name, email, image, description,
@@ -78,7 +77,7 @@ class ProfileEdit extends Component {
               data-testid="profile-image"
               className="image-perfil shadow rounded-circle"
               src={ sessionActual.image }
-              alt="Foto de Perfil"
+              alt="profile"
             /> }
           </div>
         </div>
@@ -148,15 +147,25 @@ class ProfileEdit extends Component {
             />
           </label>
         </div>
-        <Link className="d-flex justify-content-center" to="/profile/">
-          <button
-            className="btn btn-success bg-gradient ms-2"
-            type="button"
-            onClick={ this.handleClick }
-          >
-            Save
-          </button>
-        </Link>
+        <div className="d-flex justify-content-center">
+          <Link className="d-flex justify-content-center" to="/profile/">
+            <button
+              className="btn btn-danger bg-gradient ms-2"
+              type="button"
+            >
+              Exit
+            </button>
+          </Link>
+          <Link className="d-flex justify-content-center" to="/profile/">
+            <button
+              className="btn btn-success bg-gradient ms-2"
+              type="button"
+              onClick={ this.handleClick }
+            >
+              Save
+            </button>
+          </Link>
+        </div>
       </div>
     );
     return (

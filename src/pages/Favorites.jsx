@@ -42,6 +42,7 @@ class Favorites extends Component {
               key={ el.trackId }
               data={ el }
               forceRender="FavoritePage"
+              id={ el.trackId }
             />))}
           </div>
         </div>

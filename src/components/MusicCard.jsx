@@ -93,7 +93,7 @@ MusicCard.propTypes = {
     trackId: propTypes.number,
   }).isRequired,
   favoriteSongs: propTypes.arrayOf(propTypes.object).isRequired,
-  forceRender: propTypes.func,
+  forceRender: propTypes.string,
   id: propTypes.number.isRequired,
 };
 

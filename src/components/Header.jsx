@@ -23,6 +23,7 @@ class Header extends Component {
       user: userActual,
       url: session.image === undefined ? 'undefined' : session.image,
       loading: false,
+      sessionActual: session,
     });
   }
 
@@ -48,12 +49,12 @@ class Header extends Component {
       >
         { urlImg ? <BiUserCircle className="svg-icon-user" /> : <img
           className="avatar"
-          src={ urlImg }
+          src={ sessionActual.image }
           alt="Avatar"
         /> }
-        <div className="w-75">
-          <div className="text-user-header">
-            {sessionActual.name !== undefined ? sessionActual.name
+        <div className="w-50">
+          <div className="">
+            {sessionActual !== undefined ? sessionActual.name
               : user.name}
           </div>
         </div>
