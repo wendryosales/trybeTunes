@@ -6,6 +6,7 @@ import Loading from '../components/Loading';
 import FormLogin from '../components/FormLogin';
 import SignUp from '../components/SignUp';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { createUser } from '../services/userAPI';
 
 class Login extends Component {
   constructor() {
@@ -14,6 +15,15 @@ class Login extends Component {
       loading: false,
       login: true,
     };
+  }
+
+  componentDidMount() {
+    const fibonnaci = '011235813';
+    createUser({
+      name: 'Dr. Sheldon Lee Cooper',
+      email: 'mail@mail.com',
+      password: fibonnaci,
+    });
   }
 
   handleClickLogin = () => {

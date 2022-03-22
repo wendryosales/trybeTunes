@@ -52,9 +52,9 @@ class Header extends Component {
           src={ sessionActual.image }
           alt="Avatar"
         /> }
-        <div className="w-50">
-          <div className="">
-            {sessionActual !== undefined ? sessionActual.name
+        <div className="w-75">
+          <div className="text-user-header">
+            {sessionActual.name !== undefined ? sessionActual.name
               : user.name}
           </div>
         </div>
