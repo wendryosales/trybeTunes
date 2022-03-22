@@ -10,6 +10,12 @@ Application for searching songs and albums using the iTunes api
 
 **Libraries** React-Toastify, react-icons , react-player, react-router-dom.
 
+## Deploy
+
+**Link 1:** https://deploy-preview-1--trybetune.netlify.app/
+<br>
+**Link 2:** https://trybetune.netlify.app/
+
 ## Login
 
 **Email:** mail@mail.com
