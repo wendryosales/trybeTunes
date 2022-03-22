@@ -12,8 +12,9 @@ Application for searching songs and albums using the iTunes api
 
 ## Deploy
 
-**Link 1: ** https://deploy-preview-1--trybetune.netlify.app/
-**Link 2: ** https://trybetune.netlify.app/
+**Link 1:** https://deploy-preview-1--trybetune.netlify.app/
+<br>
+**Link 2:** https://trybetune.netlify.app/
 
 ## Login
 
