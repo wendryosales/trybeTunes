@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { ToastContainer } from 'react-toastify';
 import logo from '../logo.svg';
-import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
 import FormLogin from '../components/FormLogin';
 import SignUp from '../components/SignUp';
