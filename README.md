@@ -22,6 +22,11 @@ Application for searching songs and albums using the iTunes api
 **Password:** 011235813
 
 ***Welcome Dr. Sheldon Lee Cooper***
+
+## Screenshots
+
+![web](./trybe-tunes.png)
+
 ## Author
 
 - [@wendryosales](https://github.com/wendryosales)
