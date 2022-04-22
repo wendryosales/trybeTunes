@@ -32,5 +32,3 @@ Application for searching songs and albums using the iTunes api
 - [@wendryosales](https://github.com/wendryosales)
 - [Linkedin](https://www.linkedin.com/in/wendryosales/)
 
-
-
